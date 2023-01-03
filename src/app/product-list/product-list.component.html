@@ -8,6 +8,7 @@
         {{product.name}}
         </a>
     </h3>
+    <h4>here index: {{i}}, real db index: {{product._id}}</h4>
     
         <p *ngIf="product.description">
             Description: {{product.description}}
@@ -19,15 +20,29 @@
     <div class="delete-btn">
         <button type="button" (click)="deleteProduct(i)">X</button>
     </div>
+    <div class="btn">
+        <button type="button" (click)="editProduct(i)">Edit</button>
+    </div>
     
 </div>
-<div class="add-container">
+<div class="add-container" *ngIf="showAdd">
     <form [formGroup]="productForm" (ngSubmit)="add();">
         <input type="text" formControlName="name" placeholder="Introdueix un producte">
         <input type="number" formControlName="price" placeholder="Introdueix un preu">
         <input type="text" formControlName="description" placeholder="Introdueix una descripció">
         <button class="add-btn" type="submit">
             Add
+        </button>
+    </form>
+</div>
+
+<div class="add-container" *ngIf="showEdit">
+    <form [formGroup]="productForm" (ngSubmit)="modify();">        
+        <input type="text" formControlName="name" placeholder="Introdueix un producte">
+        <input type="number" formControlName="price" placeholder="Introdueix un preu">
+        <input type="text" formControlName="description" placeholder="Introdueix una descripció">
+        <button class="btn" type="submit">
+            Modify
         </button>
     </form>
 </div>
